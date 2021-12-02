@@ -18,26 +18,26 @@ def create_team():
     )           
     db.session.add(new_team)
     db.session.commit()
-    return f"Team '{new_team.name} added to database"   
+    return f"Team '{new_team.team_name} added to database"   
 
 
-# @app.route('/create/player'), methods=['POST']) 
-# def create_player():
-#     new_player = Players(player_name="new player", player_position="ST", team_id= 1)
-#     db.session.add(new_player)
-#     db.session.commit()
-#     return f"Player with playerid {new_player.player_id} added to database"
-
-@app.route('/create/player/<int:team_id>', methods=['POST']) 
-def create_player(team_id):
-    json = request.json
-    new_player = Players(
-       name= json["name"], 
-       position= json["position"]
-    )   
+@app.route('/create/player' , methods=['POST']) 
+def create_player():
+    new_player = Players(player_name="new player", player_position="ST", team_id= 1)
     db.session.add(new_player)
     db.session.commit()
-    return f"Player '{new_player.player}' added to database"
+    return f"Player with playerid {new_player.player_id} added to database"
+
+# @app.route('/create/player/<int:team_id>', methods=['POST']) 
+# def create_player(team_id):
+#     json = request.json
+#     new_player = Players(
+#        name= json["name"], 
+#        position= json["position"]
+#     )   
+#     db.session.add(new_player)
+#     db.session.commit()
+#     return f"Player '{new_player.player}' added to database"
 
 #get all the players related to team players.team
 @app.route('/get/allPlayers', methods=['GET']) 
