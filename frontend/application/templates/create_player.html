@@ -1,0 +1,33 @@
+<!-- {% extends "layout.html" %}
+{% block body %}
+<div class='form'>
+    <form method='POST' action=''>
+        {{ form.hidden_tag() }}
+        {{ form.description.label }} {{ form.description }}<br>
+        {{ form.submit }}<br>
+    </form>
+</div>
+{% endblock %} -->
+{% extends "layout.html" %}
+{% block body %}
+
+<form method="POST">
+    <table>
+        <tr>
+            <td>{{ form.name.label }}</td>
+            <td>{{ form.name }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.position.label }}</td>
+            <td>{{ form.position }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.team.label }}</td>
+            <td>{{ form.team }}</td>
+        </tr>
+    </table>
+    {{ form.submit }}
+    {{ form.hidden_tag() }}
+</form>
+
+{% endblock body %}

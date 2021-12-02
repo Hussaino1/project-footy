@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+<!-- {% extends "layout.html" %}
 {% block body %}
 
     <h2>Incomplete Tasks</h2>
@@ -27,4 +27,40 @@
     {% endif %}
     {% endfor %}
 
+{% endblock body %} -->
+{% extends "layout.html" %}
+{% block body %}
+body>
+		<div>
+		<h3>
+			<p align= "center">
+    {% for team in teams %}  
+    <table>
+        <h2>{{ team"name"] }}</h2>
+        <tr>
+            <td><b>teamID</b></td>
+            <td>{{ team["teamID"] }}</td> 
+        </tr>
+        <tr>
+            <td><b>position</b></td>
+            <td>{{ player"position"] }}</td> 
+        
+        </tr>
+    </table>
+    
+    <h3>players of {{ team["name"] }}</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>teamID</th>
+        </tr>
+        {% for Player in team ["players"] %}
+        <tr>
+            <td>{{ player["name"] }}</td> 
+            <td>{{ player["position"] }}</td> 
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% endfor %}
 {% endblock body %}

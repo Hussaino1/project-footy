@@ -2,15 +2,15 @@ version: "3.8"
 services:
   frontend:
     build: ./frontend
-    image: hussaino/todo-app-frontend:latest
-    container_name: todo-app-frontend
+    image: hussaino/footy-frontend:latest
+    container_name: footy-frontend
     ports:
     - target: 5000
       published: 80
   backend:
     build: ./backend
-    image: hussaino/todo-app-backend:latest
-    container_name: todo-app-backend
+    image: hussaino/footy-backend:latest
+    container_name: footy-backend
     environment:
       DATABASE_URI:
       CREATE_SCHEMA:
