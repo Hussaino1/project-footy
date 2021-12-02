@@ -1,5 +1,5 @@
 from application import app, db
-from application.models import Team, Players
+from application.models import Teams, Players
 from flask import render_template, request, redirect, url_for, Response, jsonify
 
 # @app.route('/create/team'), methods=['POST'])
@@ -14,7 +14,7 @@ from flask import render_template, request, redirect, url_for, Response, jsonify
 def create_team():
     json= request.json
     new_team = Teams( 
-        name = json["name"],
+        team_name = json["name"],
     )           
     db.session.add(new_team)
     db.session.commit()
@@ -49,14 +49,14 @@ def get_all_players():
         for team in players.team:
             teams.append (
                 {
-                    "id": team.id.
+                    "id": team.id,
                     "name":team_name
                 }
             )
         json["players"].append(          #attach that list to the information of players
             {
-               "id": player.player_id
-               "name": player.player_name
+               "id": player.player_id,
+               "name": player.player_name,
                "position": position.player_position
             }
 
