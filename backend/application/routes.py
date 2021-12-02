@@ -28,7 +28,7 @@ def create_team():
 #     db.session.commit()
 #     return f"Player with playerid {new_player.player_id} added to database"
 
-@app.route('/create/player/<int:team_id>'), methods=['POST']) 
+@app.route('/create/player/<int:team_id>', methods=['POST']) 
 def create_player(team_id):
     json = request.json
     new_player = Players(
@@ -46,13 +46,13 @@ def get_all_players():
     json = {"players" : []}
     for players in all_players:      #for loop to go over all the players 
         teams =[]                    # list of team add to empty list then attach list of all the players relate to team
-        for teams in players.team:
-            teams.append ()
+        for team in players.team:
+            teams.append (
                 {
                     "id": team.id.
                     "name":team_name
                 }
-   
+            )
         json["players"].append(          #attach that list to the information of players
             {
                "id": player.player_id
