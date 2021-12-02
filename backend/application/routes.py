@@ -11,7 +11,7 @@ from flask import render_template, request, redirect, url_for, Response, jsonify
 #     return f"Team with teamid {new_team.team_id} added to database"
  
 @app.route('/create/team' , methods=['POST'])
- def create_team():
+def create_team():
     json= request.json
     new_team = Teams( 
         name = json["name"],
