@@ -13,20 +13,78 @@ from flask import render_template, request, redirect, url_for, Response, jsonify
 @app.route('/create/team' , methods=['POST'])
 def create_team():
     json= request.json
-    new_team = Teams( 
-        team_name = json["name"],
-    )           
+    new_team = Teams(team_name =json["team_name"])           
     db.session.add(new_team)
     db.session.commit()
-    return f"Team '{new_team.team_name} added to database"   
+    return Response(f"Added team with team_name:{new_team.team_name}", mimetype='text/plain')   
 
 
 @app.route('/create/player' , methods=['POST']) 
 def create_player():
-    new_player = Players(player_name="new player", player_position="ST", team_id= 1)
+    json= request.json
+    new_player = Players(description=json["description"])
     db.session.add(new_player)
     db.session.commit()
-    return f"Player with playerid {new_player.player_id} added to database"
+    return Response(f"Added player with player_name:{new_player.description}", mimetype='text/plain')  
+
+
+@app.route('/read/allPlayers', methods=['GET'])
+def read_players():
+    all_players = Players.query.all()
+    players_dict = {"players": []}
+    for players in all_players:
+        players_dict["players"].append(
+            {
+                "id": players.id,
+                "description": players.description,
+                "completed": players.completed
+            }
+        )
+    return jsonify(players_dict)
+
+@app.route('/read/players/<int:id>', methods=['GET'])
+def read_players(id):
+    players = Players.query.get(id)
+    players_dict = {
+                    "id": players.id,
+                    "description": players.description,
+                    "completed": players.completed
+                }
+    return jsonify(players_dict)
+
+
+@app.route('/update/players/<int:id>', methods=['PUT'])
+def update_players(id):
+    package = request.json
+    players = Players.query.get(id)
+    players.description = package["description"]
+    db.session.commit()
+    return Response(f"Updated players (ID: {id}) with description: {players.description}", mimetype='text/plain')
+
+
+@app.route('/delete/players/<int:id>', methods=['DELETE'])
+def delete_players(id):
+    players = Players.query.get(id)
+    db.session.delete(players)
+    db.session.commit()
+    return Response(f"Deleted players with ID: {id}", mimetype='text/plain')
+
+@app.route('/completed/players/<int:id>', methods=['PUT'])
+def completed_players(id):
+    players = Players.query.get(id)
+    players.completed = True
+    db.session.commit()
+    return Response(f"Players with ID: {id} set to completed = True", mimetype='text/plain')
+
+
+
+
+
+
+
+
+
+
 
 # @app.route('/create/player/<int:team_id>', methods=['POST']) 
 # def create_player(team_id):
@@ -56,8 +114,8 @@ def get_all_players():
         json["players"].append(          #attach that list to the information of players
             {
                "id": player.player_id,
-               "name": player.player_name,
-               "position": position.player_position
+               "description": player.player_name,
+               "completed": completed.player_completed
             }
 
         )

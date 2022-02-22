@@ -3,152 +3,138 @@
 - [Backend API](#backend-api)
   - [Summary](#summary)
   - [`GET`](#get)
-    - [`/read/allTasks`](#readalltasks)
-    - [`/read/task/{id}`](#readtaskid)
+    - [`/read/allPlayers`](#readallplayers)
+    - [`/read/player/{id}`](#readplayerid)
   - [`POST`](#post)
-    - [`/create/task`](#createtask)
+    - [`/create/player`](#createplayer)
   - [`PUT`](#put)
-    - [`/update/task/{id}`](#updatetaskid)
-    - [`/complete/task/{id}`](#completetaskid)
-    - [`/incomplete/task/{id}`](#incompletetaskid)
+    - [`/update/player/{id}`](#updateplayerid)
+    - [`/complete/player/{id}`](#completeplayerid)
   - [`DELETE`](#delete)
-    - [`/delete/task/{id}`](#deletetaskid)
+    - [`/delete/player/{id}`](#deleteplayerid)
 
 ## Summary
 
 | URL                     | Method   | Request Body               |
 | ----------------------- | -------- | -------------------------- |
-| `/read/allTasks`        | `GET`    | None                       |
-| `/read/task/{id}`       | `GET`    | None                       |
-| `/create/task`          | `POST`   | `{"description": <value>}` |
-| `/update/task/{id}`     | `PUT`    | `{"description": <value>}` |
-| `/complete/task/{id}`   | `PUT`    | None                       |
-| `/incomplete/task/{id}` | `PUT`    | None                       |
-| `/delete/task/{id}`     | `DELETE` | None                       |
+| `/read/allPlayers`        | `GET`    | None                       |
+| `/read/player/{id}`       | `GET`    | None                       |
+| `/create/player`          | `POST`   | `{"description": <value>}` |
+| `/update/player/{id}`     | `PUT`    | `{"description": <value>}` |
+| `/complete/player/{id}`   | `PUT`    | None                       |
+| `/incomplete/player/{id}` | `PUT`    | None                       |
+| `/delete/player/{id}`     | `DELETE` | None                       |
 
 ## `GET`
 
-### `/read/allTasks`
+### `/read/allPlayers`
 
 Example Response
 
 ```json
 {
-    "tasks": [
+    "players": [
         {
             "id": 1,
-            "description": "Take out the bins",
+            "description": "Harry Kane",
             "completed": "true"
         },
         {
             "id": 2,
-            "description": "Do the washing up",
+            "description": "Steven Gerrard",
             "completed": "false"
         }
     ]
 }
 ```
 
-### `/read/task/{id}`
+### `/read/player/{id}`
 
 Path Parameters
 
 | Parameter | Description                                |
 | --------- | ------------------------------------------ |
-| `{id}`    | ID for the task to query from the database |
+| `{id}`    | ID for the player to query from the database |
 
 Example Response
 
 ```json
 {
     "id": 1,
-    "description": "Take out the bins",
+    "description": "Harry Kane",
     "completed": "true"
 }
 ```
 
 ## `POST`
 
-### `/create/task`
+### `/create/player`
 
 Example Request
 
 ```json
 {
-    "description": "Take out the bins"
+    "description": "Harry Kane"
 }
 ```
 
 Example Response
 
 ```text
-Added task with description: Take out the bins
+Added player with description: Harry Kane
 ```
 
 ## `PUT`
 
-### `/update/task/{id}`
+### `/update/player/{id}`
 
 Path Parameters
 
 | Parameter | Description                                |
 | --------- | ------------------------------------------ |
-| `{id}`    | ID for the task to query from the database |
+| `{id}`    | ID for the player to query from the database |
 
 Example Request
 
 ```json
 {
-    "description": "Do the washing up"
+    "description": "Steven Gerrard"
 }
 ```
 
 Example Response
 
 ```text
-Updated task (ID: 1) with description: Take out the bins
+Updated player (ID: 1) with description: Harry Kane
 ```
 
-### `/complete/task/{id}`
+### `/complete/player/{id}`
 
 Path Parameters
 
 | Parameter | Description                                |
 | --------- | ------------------------------------------ |
-| `{id}`    | ID for the task to query from the database |
+| `{id}`    | ID for the player to query from the database |
 
 Example Response
 
 ```text
-Task with ID: 1 set to completed = False
+Player with ID: 1 set to completed = False
 ```
 
-### `/incomplete/task/{id}`
-
-Path Parameters
-
-| Parameter | Description                                |
-| --------- | ------------------------------------------ |
-| `{id}`    | ID for the task to query from the database |
-
-Example Response
-
-```text
-Task with ID: 1 set to completed = True
-```
 
 ## `DELETE`
 
-### `/delete/task/{id}`
+### `/delete/player/{id}`
 
 Path Parameters
 
 | Parameter | Description                                |
 | --------- | ------------------------------------------ |
-| `{id}`    | ID for the task to query from the database |
+| `{id}`    | ID for the player to query from the database |
 
 Example Response
 
 ```text
-Deleted task with ID: 1
+Deleted player with ID: 1
 ```

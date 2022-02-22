@@ -11,7 +11,7 @@ from flask_wtf import FlaskForm
 
 class CreatePlayerForm(FlaskForm):
     name = StringField('Player Name', validators=[DataRequired()])
-    position = SelectField('position', validators=[DataRequired()],
+    description = SelectField('description', validators=[DataRequired()],
         choices=[
             ('GoalKeeper', 'GoalKeeper'),
             ('Defense', 'Defence'),
